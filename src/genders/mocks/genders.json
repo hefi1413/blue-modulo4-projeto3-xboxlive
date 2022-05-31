@@ -1,0 +1,21 @@
+
+[
+    {
+        "name": "Racing"
+    },    
+    {
+        "name": "RPG"
+    },    
+    {
+        "name": "Strategy"
+    },    
+    {
+        "name": "Sports"
+    },    
+    {
+        "name": "Action"
+    },
+    {
+        "name": "Adventure"
+    }
+]

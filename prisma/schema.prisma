@@ -1,0 +1,67 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Games {
+  id                 Int      @id @unique @default(autoincrement())
+  title              String   @db.VarChar(100)
+  CoverImageUrl      String   @map("coverimage_url") @db.VarChar(255)
+  Description        String   @map("description") @db.VarChar(255)
+  Year               Int      @map("year")
+  ImdbScore          Int      @map("imdb_score")
+  TrailerYouTubeUrl  String   @map("trailer_youtube_url") @db.VarChar(255)
+  GameplayYouTubeUrl String   @map("gameplay_youtube_url") @db.VarChar(255)
+  createdAt          DateTime @default(now()) @map("created_at")
+
+  genders Genders[]
+
+  profiles Profiles[]
+
+  @@map("games")
+}
+
+model Genders {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(100)
+  createdAt DateTime @default(now()) @map("created_at")
+
+  games Games[]
+
+  @@map("genders")
+}
+
+model Users {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(30)
+  email     String   @unique @db.VarChar(100)
+  password  String   @db.VarChar(129)
+  cpf       String   @db.Char(11)
+  isAdmin   Boolean  @default(false) @map("is_admin")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  profiles Profiles[]
+
+  @@map("users")
+}
+
+model Profiles {
+  id        Int      @id @default(autoincrement())
+  title     String   @db.VarChar(30)
+  imageURL  String   @map("image_url") @db.VarChar(255)
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user   Users @relation(fields: [userId], references: [id])
+  userId Int   @map("user_id")
+
+  games Games[]
+
+  @@map("profiles")
+}
