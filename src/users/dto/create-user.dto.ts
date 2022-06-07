@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNumber, IsOptional, IsPositive, IsString, IsUrl } from 'class-validator';
+import { IsString, IsBoolean } from 'class-validator';
 
 export class CreateUserDto {
     @IsString()
@@ -43,12 +43,5 @@ export class CreateUserDto {
       example: 'false'
     })
     isAdmin:   boolean;
-}
-function IsString() {
-    throw new Error("Function not implemented.");
-}
-
-function ApiProperty(arg0: { description: string; example: string; }) {
-    throw new Error("Function not implemented.");
 }
 
