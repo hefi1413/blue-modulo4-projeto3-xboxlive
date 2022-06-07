@@ -17,7 +17,7 @@ async function bootstrap() {
   .addTag('auth')
   .addTag('home')
   .addTag('games')
-  .addTag('genders')
+  .addTag('genres')
   .addTag('profiles')
   .addTag('users')
   .addBearerAuth()
@@ -27,7 +27,7 @@ const document = SwaggerModule.createDocument(app, config);
 SwaggerModule.setup('api', app, document);
 
   await app.listen(PORT, () => {
-    console.log("Server listening on port: ", PORT);
+    //console.log("Server listening on port: ", PORT);
   })  
 }
 bootstrap();

@@ -3,9 +3,10 @@ import { AppService } from './app.service';
 import { Request } from 'express';
 import { ApiTags, ApiOperation } from '@nestjs/swagger';
 
+@ApiTags('home')
 @Controller('home')
 export class AppController {
-  constructor(private readonly appService: AppService) { }
+constructor(private readonly appService: AppService) { }
 
   @Get()
   @ApiOperation({
@@ -15,12 +16,13 @@ export class AppController {
     const baseUrl = req.protocol + '://' + req.get('host');
     return this.appService.getAppStatus(baseUrl);
   }
-  
+
   @Get(':idprofile')
-  @ApiTags('home')
+  @ApiOperation({
+    summary: 'Retorna relação de jogos favoritos do perfil informado',
+  })
   getHomepage(@Param('idprofile') idprofile: string,) {
     return this.appService.getHomepage(+idprofile);
   }
 
 }
-

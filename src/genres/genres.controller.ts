@@ -3,7 +3,7 @@ import { GenresService } from './genres.service';
 import { CreateGenresDto } from './dto/CreateGenres.dto';
 import { UpdateGenresDto } from './dto/UpdateGenres.dto';
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
-import { Genders } from '@prisma/client';
+import { Genres } from '@prisma/client';
 import { AuthGuard } from '@nestjs/passport';
 
 @ApiTags('genres')

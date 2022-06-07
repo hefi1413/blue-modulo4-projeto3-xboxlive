@@ -13,7 +13,7 @@ export class GenresService {
     }
     
     async findById(_id: number) {
-        const record =await this.prisma.genders.findUnique({ where: { id: _id, } });
+        const record =await this.prisma.genres.findUnique({ where: { id: _id, } });
 
         if (!record) {
             throw new NotFoundException(`Registro ID:${_id} não localizado.`)
@@ -22,33 +22,33 @@ export class GenresService {
     }
 
     create(dto: CreateGenresDto) {
-        const _genders: Genres = { ...dto };
-        return this.prisma.genders.create( { data: _genders });
+        const _genres: Genres = { ...dto };
+        return this.prisma.genres.create( { data: _genres });
     }
 
     async update(_id: number, dto: UpdateGenresDto) {
         const data: Partial<Genres> = { ...dto };
 
-        const record =await this.prisma.genders.findUnique({ where: { id: _id, } });
+        const record =await this.prisma.genres.findUnique({ where: { id: _id, } });
 
         if (!record) {
             throw new NotFoundException(`Registro ID:'${_id}' não localizado.`)
         };
 
-        return this.prisma.genders.update({
+        return this.prisma.genres.update({
             where: { id: _id },
             data,
         });    
     }
 
     async delete(_id: number,) {
-        const record =await this.prisma.genders.findUnique({ where: { id: _id, } });
+        const record =await this.prisma.genres.findUnique({ where: { id: _id, } });
 
         if (!record) {
             throw new NotFoundException(`Registro ID:'${_id}' não localizado.`)
         };
 
-        return this.prisma.genders.delete({
+        return this.prisma.genres.delete({
             where: { id: _id },
         });    
     }

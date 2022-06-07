@@ -11,7 +11,7 @@ export class GamesService {
     findAll() {
         return this.prisma.games.findMany({
             include: {
-                genders: {
+                genres: {
                   orderBy: {
                     name: 'asc',
                   },
@@ -45,8 +45,8 @@ export class GamesService {
             ImdbScore:dto.ImdbScore,
             TrailerYouTubeUrl:dto.TrailerYouTubeUrl,
             GameplayYouTubeUrl:dto.GameplayYouTubeUrl,
-            genders: {
-                connect: dto.genders 
+            genres: {
+                connect: dto.genres 
             },
         };
 
@@ -55,7 +55,7 @@ export class GamesService {
         return this.prisma.games.create({ 
             data:_data,
             include: {
-                genders: true,
+                genres: true,
             },
         }) 
     }
@@ -78,8 +78,8 @@ export class GamesService {
         };
 
         // optional relation
-        if (dto.genders) {
-            _data["genders"] = { connect: dto.genders }
+        if (dto.genres) {
+            _data["genres"] = { connect: dto.genres }
         };
 
         return this.prisma.games.update({

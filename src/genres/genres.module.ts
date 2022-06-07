@@ -17,4 +17,4 @@ import { JwtStrategy } from 'src/auth/jwt.strategy';
   controllers: [GenresController],
   providers: [GenresService, JwtStrategy],
 })
-export class GendersModule {}
+export class GenresModule {}

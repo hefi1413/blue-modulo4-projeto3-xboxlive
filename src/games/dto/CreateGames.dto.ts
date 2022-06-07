@@ -1,5 +1,4 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Genders } from '@prisma/client';
 import { IsNumber, IsOptional, IsPositive, IsString, IsUrl } from 'class-validator';
 
 export class CreateGamesDto {
@@ -47,5 +46,5 @@ export class CreateGamesDto {
     @IsOptional()
     GameplayYouTubeUrl: string;
 
-    genders: Object[];
+    genres: Object[];
 }
