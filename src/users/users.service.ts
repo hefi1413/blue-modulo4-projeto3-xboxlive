@@ -1,8 +1,9 @@
-import { BadRequestException, Injectable, InternalServerErrorException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import * as bcrypt from 'bcrypt';
+import { Users } from '@prisma/client';
 
 const saltRounds =10;
 
@@ -25,8 +26,13 @@ export class UsersService {
                   })
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async findOne(_id: number) {
+    const record =await this.prisma.users.findUnique({ where: { id: _id, } });
+
+    if (!record) {
+        throw new NotFoundException(`Registro ID:${_id} não localizado.`)
+    };
+    return record;
   }
 
   create(dto: CreateUserDto) {
@@ -42,11 +48,30 @@ export class UsersService {
     return this.prisma.users.create( { data: dto });
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  async update(_id: number, dto: UpdateUserDto) {
+    const _data: Partial<Users> = { ...dto };
+
+    const record =await this.prisma.users.findUnique({ where: { id: _id, } });
+
+    if (!record) {
+        throw new NotFoundException(`Registro ID:'${_id}' não localizado.`)
+    };
+
+    return this.prisma.users.update({
+        where: { id: _id },
+        data : _data,
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  async delete(_id: number) {
+    const record =await this.prisma.users.findUnique({ where: { id: _id, } });
+
+    if (!record) {
+        throw new NotFoundException(`Registro ID:'${_id}' não localizado.`)
+    };
+
+    return this.prisma.users.delete({
+        where: { id: _id },
+    });   
   }
 }

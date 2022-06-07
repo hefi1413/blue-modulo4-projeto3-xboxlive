@@ -50,7 +50,7 @@ export class GamesService {
             },
         };
 
-        console.log('data:', _data );
+        //console.log('data:', _data );
 
         return this.prisma.games.create({ 
             data:_data,

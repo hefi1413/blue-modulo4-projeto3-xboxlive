@@ -19,7 +19,7 @@ constructor(private readonly appService: AppService) { }
 
   @Get(':idprofile')
   @ApiOperation({
-    summary: 'Retorna relação de jogos favoritos do perfil informado',
+    summary: 'ID do profile do usuário',
   })
   getHomepage(@Param('idprofile') idprofile: string,) {
     return this.appService.getHomepage(+idprofile);

@@ -30,7 +30,6 @@ export class ProfilesService {
   }
 
   create(dto: CreateProfileDto) {
-    //const profile: Profiles = { ...dto, createdAt: null, id: 0 };
     return this.prisma.profiles.create( { data: dto });
   }
 
