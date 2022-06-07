@@ -1,12 +1,26 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param, Req } from '@nestjs/common';
 import { AppService } from './app.service';
+import { Request } from 'express';
+import { ApiTags, ApiOperation } from '@nestjs/swagger';
 
-@Controller()
+@Controller('home')
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(private readonly appService: AppService) { }
 
   @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  @ApiOperation({
+    summary: 'Status da aplicação',
+  })
+  getAppStatus(@Req() req: Request) {
+    const baseUrl = req.protocol + '://' + req.get('host');
+    return this.appService.getAppStatus(baseUrl);
   }
+  
+  @Get(':idprofile')
+  @ApiTags('home')
+  getHomepage(@Param('idprofile') idprofile: string,) {
+    return this.appService.getHomepage(+idprofile);
+  }
+
 }
+

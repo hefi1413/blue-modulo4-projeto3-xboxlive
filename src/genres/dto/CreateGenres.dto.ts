@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsString } from 'class-validator';
 
-export class CreateGendersDto {
+export class CreateGenresDto {
     @IsString()
     @ApiProperty({
       description: 'Nome do gênero',

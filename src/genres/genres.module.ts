@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { GendersService } from './genders.service';
-import { GendersController } from './genders.controller';
+import { GenresService } from './genres.service';
+import { GenresController } from './genres.controller';
 import { PrismaModule } from '../prisma/prisma.module';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
@@ -14,7 +14,7 @@ import { JwtStrategy } from 'src/auth/jwt.strategy';
       signOptions: { expiresIn: '10h' },
     }),
   ], 
-  controllers: [GendersController],
-  providers: [GendersService, JwtStrategy],
+  controllers: [GenresController],
+  providers: [GenresService, JwtStrategy],
 })
 export class GendersModule {}

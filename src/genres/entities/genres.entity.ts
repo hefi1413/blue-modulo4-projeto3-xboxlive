@@ -1,5 +1,5 @@
 
-export class Genders {
+export class Genres {
     id?: number;
     name: string;
     createdAt? :Date;

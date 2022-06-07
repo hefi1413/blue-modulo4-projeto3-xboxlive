@@ -61,18 +61,31 @@ export class GamesService {
     }
 
     async update(_id: number, dto: UpdateGamesDto) {
-        const _data: Partial<Games> = { ...dto };
-
         const record =await this.prisma.games.findUnique({ where: { id: _id, } });
 
         if (!record) {
             throw new NotFoundException(`Registro ID:'${_id}' não localizado.`)
         };
 
+        const _data =  {
+            title: dto.title,
+            CoverImageUrl: dto.CoverImageUrl,
+            Description: dto.Description,
+            Year: dto.Year,
+            ImdbScore: dto.ImdbScore,
+            TrailerYouTubeUrl: dto.TrailerYouTubeUrl,
+            GameplayYouTubeUrl: dto.GameplayYouTubeUrl
+        };
+
+        // optional relation
+        if (dto.genders) {
+            _data["genders"] = { connect: dto.genders }
+        };
+
         return this.prisma.games.update({
             where: { id: _id },
             data : _data,
-        });    
+        });
     }
 
     async delete(_id: number,) {

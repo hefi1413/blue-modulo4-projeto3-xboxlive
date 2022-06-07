@@ -1,6 +1,8 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
+//npx prisma migrate dev
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -21,21 +23,21 @@ model Games {
   GameplayYouTubeUrl String   @map("gameplay_youtube_url") @db.VarChar(255)
   createdAt          DateTime @default(now()) @map("created_at")
 
-  genders Genders[]
+  genres Genres[]
 
   profiles Profiles[]
 
   @@map("games")
 }
 
-model Genders {
+model Genres {
   id        Int      @id @default(autoincrement())
   name      String   @db.VarChar(100)
   createdAt DateTime @default(now()) @map("created_at")
 
   games Games[]
 
-  @@map("genders")
+  @@map("genres")
 }
 
 model Users {

@@ -15,6 +15,7 @@ async function bootstrap() {
   .setDescription('Aplicação para gestão de jogos XBOX')
   .setVersion('1.0.0')
   .addTag('auth')
+  .addTag('home')
   .addTag('games')
   .addTag('genders')
   .addTag('profiles')
