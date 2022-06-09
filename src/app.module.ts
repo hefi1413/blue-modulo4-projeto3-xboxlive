@@ -7,10 +7,19 @@ import { PrismaModule } from './prisma/prisma.module';
 import { ProfilesModule } from './profiles/profiles.module';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { JwtModule } from '@nestjs/jwt';
+import { PassportModule } from '@nestjs/passport';
+import { JwtStrategy } from './auth/jwt.strategy';
 
 @Module({
-  imports: [GamesModule, GenresModule, PrismaModule, ProfilesModule, UsersModule, AuthModule],
+  imports: [GamesModule, GenresModule, PrismaModule, ProfilesModule, UsersModule, AuthModule,
+    PassportModule.register({ defaultStrategy: 'jwt' }),    
+    JwtModule.register({
+      secret: process.env.JWT_SECRET,
+      signOptions: { expiresIn: '10h' },
+    }),
+  ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, JwtStrategy],
 })
 export class AppModule {}

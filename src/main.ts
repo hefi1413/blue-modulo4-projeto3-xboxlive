@@ -12,7 +12,7 @@ async function bootstrap() {
   
   const config = new DocumentBuilder()
   .setTitle('XBOX Live')
-  .setDescription('Aplicação para gestão de jogos XBOX')
+  .setDescription('Aplicação para gestão de jogos XBOX LIve')
   .setVersion('1.0.0')
   .addTag('auth')
   .addTag('home')
