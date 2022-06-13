@@ -1,4 +1,27 @@
 
 [
-
+    {
+        "name": "nome 1",
+        "email": "nome1@gmail.com",
+        "password": "senha1",
+        "confirmPassword": "senha1",
+        "cpf":       "98745678832",
+        "isAdmin": true
+    },
+    {
+        "name": "nome 2",
+        "email": "nome2@gmail.com",
+        "password": "senha2",
+        "confirmPassword": "senha2",
+        "cpf":       "98745678832",
+        "isAdmin": true
+    },
+    {
+        "name": "nome 3",
+        "email": "nome3@gmail.com",
+        "password": "senha3",
+        "confirmPassword": "senha3",
+        "cpf":       "98745678832",
+        "isAdmin": true
+    }
 ]

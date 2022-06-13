@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { Profiles } from '@prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateProfileDto } from './dto/create-profile.dto';
+import { FavoriteProfileDto } from './dto/favorite-profile.dto';
 import { UpdateProfileDto } from './dto/update-profile.dto';
 
 @Injectable()
@@ -49,7 +50,12 @@ export class ProfilesService {
   }
 
   async delete(_id: number) {
-    const record =await this.prisma.profiles.findUnique({ where: { id: _id, } });
+    const record =await this.prisma.profiles.findUnique({ 
+                                where: { id: _id, },
+                                include: {
+                                  games: true,
+                                }  
+                              });
 
     if (!record) {
         throw new NotFoundException(`Registro ID:'${_id}' não localizado.`)
@@ -60,15 +66,17 @@ export class ProfilesService {
     });    
   }
 
-  async favorite( _id: number, dto: Object[]) {
+  async favorite( _id: number, dto: FavoriteProfileDto) {
 
     return await this.prisma.profiles.update({
       where: { id: _id },
       data: {
         games: {
-          connect: dto,
+          set: [],
+          connect: dto.games,
         }
       }
     })
+
   }
 }

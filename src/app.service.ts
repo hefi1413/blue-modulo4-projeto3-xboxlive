@@ -8,7 +8,7 @@ export class AppService {
 
   getHomepage(idprofile: number,) {
     return this.prisma.profiles.findMany({
-        where: { id : idprofile },
+        where: { id: idprofile },
         include: {
             games: {
               include: {

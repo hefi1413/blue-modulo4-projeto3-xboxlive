@@ -4,6 +4,7 @@ import { CreateProfileDto } from './dto/create-profile.dto';
 import { UpdateProfileDto } from './dto/update-profile.dto';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { FavoriteProfileDto } from './dto/favorite-profile.dto';
 
 @ApiTags('profiles')
 @UseGuards(AuthGuard())
@@ -56,7 +57,7 @@ export class ProfilesController {
   @ApiOperation({
     summary: 'Favoritar jogos para um perfil de usuário',
   })    
-  favorite(@Param('id') id: string, @Body() dto: Object[]) {
+  favorite(@Param('id') id: string, @Body() dto: FavoriteProfileDto) {
     return this.profilesService.favorite( +id, dto,  )
   }
 }

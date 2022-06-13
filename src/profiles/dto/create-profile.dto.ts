@@ -5,17 +5,21 @@ export class CreateProfileDto {
     @IsString()
     @ApiProperty({
         description: 'Título do perfil',
-        example: 'Monster'
+        example: 'Master'
     })
-    title:      string;
+    title: string;
 
     @IsUrl()
     @ApiProperty({
         description: 'Url da imagem do perfil',
         example: 'http://action/xxxx/yyy'
     })
-    imageURL:     string
+    imageURL: string
 
     @IsNumber()
+    @ApiProperty({
+        description: 'ID do usuário proprietário deste perfil',
+        example: '1'
+    })
     userId: number
 }
