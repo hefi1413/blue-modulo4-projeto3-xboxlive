@@ -27,7 +27,19 @@ export class UsersService {
   }
 
   async findOne(_id: number) {
-    const record =await this.prisma.users.findUnique({ where: { id: _id, } });
+    const record =await this.prisma.users.findUnique({ 
+      where: { id: _id, },
+      include: {
+        profiles: {
+          orderBy: {
+            title: 'asc',
+          },
+          select: {
+            title: true,
+          },
+        },
+      },
+    });
 
     if (!record) {
         throw new NotFoundException(`Registro ID:${_id} não localizado.`)

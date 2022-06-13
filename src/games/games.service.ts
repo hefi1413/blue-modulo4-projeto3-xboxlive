@@ -26,7 +26,20 @@ export class GamesService {
     }
 
     async findById(_id: number) {
-        const record =await this.prisma.games.findUnique({ where: { id: _id, } });
+        const record =await this.prisma.games.findUnique({ 
+            where: { id: _id, },
+            include: {
+                genres: {
+                  orderBy: {
+                    name: 'asc',
+                  },
+                  select: {
+                    id: true,
+                    name: true,
+                  },
+                },
+            }, 
+        });
 
         if (!record) {
             throw new NotFoundException(`Registro ID:${_id} não localizado.`)
@@ -35,8 +48,6 @@ export class GamesService {
     }
 
     create(dto: CreateGamesDto) {
-        const games: Games = { ...dto };
-
         const _data =  {
             title: dto.title,
             CoverImageUrl: dto.CoverImageUrl,
@@ -45,12 +56,14 @@ export class GamesService {
             ImdbScore:dto.ImdbScore,
             TrailerYouTubeUrl:dto.TrailerYouTubeUrl,
             GameplayYouTubeUrl:dto.GameplayYouTubeUrl,
-            genres: {
-                connect: dto.genres 
-            },
         };
 
-        //console.log('data:', _data );
+        // optional relation
+        if (dto.genres) {
+            _data["genres"] = {           
+                connect: dto.genres 
+            }
+        };
 
         return this.prisma.games.create({ 
             data:_data,
@@ -79,7 +92,10 @@ export class GamesService {
 
         // optional relation
         if (dto.genres) {
-            _data["genres"] = { connect: dto.genres }
+            _data["genres"] = {           
+                set: [],
+                connect: dto.genres 
+            }
         };
 
         return this.prisma.games.update({

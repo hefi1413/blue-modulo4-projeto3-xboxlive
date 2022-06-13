@@ -22,7 +22,17 @@ export class ProfilesService {
   }
 
   async findById(_id: number) {
-    const record =await this.prisma.profiles.findUnique({ where: { id: _id, } });
+    const record =await this.prisma.profiles.findUnique({ 
+      where: { id: _id, },
+      include: {
+        games: {
+          select: {
+            title: true,
+            CoverImageUrl: true,
+          }
+        }
+      }
+    });
 
     if (!record) {
         throw new NotFoundException(`Registro ID:${_id} não localizado.`)

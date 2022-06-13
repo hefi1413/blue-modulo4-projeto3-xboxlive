@@ -6,7 +6,7 @@ export class Games {
     Description : string;
     Year :number;
     ImdbScore :number;
-    TrailerYouTubeUrl :string;
-    GameplayYouTubeUrl :string;
+    TrailerYouTubeUrl? :string;
+    GameplayYouTubeUrl? :string;
     createdAt? :Date;
 }
