@@ -72,12 +72,11 @@ export class ProfilesService {
     };
 
     return this.prisma.profiles.delete({
-        where: { id: _id },
-    });    
+      where: { id: _id },
+      });    
   }
 
   async favorite( _id: number, dto: FavoriteProfileDto) {
-
     return await this.prisma.profiles.update({
       where: { id: _id },
       data: {
@@ -87,6 +86,5 @@ export class ProfilesService {
         }
       }
     })
-
   }
 }

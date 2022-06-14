@@ -19,7 +19,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       where: { email: payload.email },
     });
 
-    console.log('user:', user );
+    //console.log('user:', user );
 
     if (!user) {
       throw new UnauthorizedException(

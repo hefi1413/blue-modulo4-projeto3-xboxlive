@@ -76,14 +76,17 @@ export class UsersService {
   }
 
   async delete(_id: number) {
-    const record =await this.prisma.users.findUnique({ where: { id: _id, } });
+    try {
+      await this.prisma.profiles.deleteMany({
+        where: { userId: _id, },
+      });   
 
-    if (!record) {
-        throw new NotFoundException(`Registro ID:'${_id}' não localizado.`)
-    };
-
-    return this.prisma.users.delete({
-        where: { id: _id },
-    });   
+      return await this.prisma.users.delete({
+        where: { id: _id, },
+      });   
+    }
+    catch( e ) {
+        throw new NotFoundException(`Não foi possível deletar o registro ID:${_id}`)
+    }
   }
 }

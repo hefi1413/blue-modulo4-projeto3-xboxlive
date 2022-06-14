@@ -60,8 +60,10 @@ export class GamesService {
 
         // optional relation
         if (dto.genres) {
-            _data["genres"] = {           
-                connect: dto.genres 
+            _data["genres"] = {
+                genres: {
+                    connect: dto.genres 
+                }
             }
         };
 
@@ -92,9 +94,11 @@ export class GamesService {
 
         // optional relation
         if (dto.genres) {
-            _data["genres"] = {           
-                set: [],
-                connect: dto.genres 
+            _data["genres"] = {
+                genres: {
+                    set: [],
+                    connect: dto.genres
+                }
             }
         };
 
