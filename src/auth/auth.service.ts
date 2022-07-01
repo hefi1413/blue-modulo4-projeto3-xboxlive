@@ -4,8 +4,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 import { LoginResponseDto } from './dto/login-response.dto';
 import { LoginDto } from './dto/login.dto';
 import { JwtService } from '@nestjs/jwt';
-import { Users } from 'src/users/entities/user.entity';
-import { games } from '../games/mocks/games';
+
 
 @Injectable()
 export class AuthService {
@@ -53,7 +52,20 @@ export class AuthService {
   }
 
   findAll() {
-    return games;
+    return this.prisma.games.findMany({
+        include: {
+            genres: {
+              orderBy: {
+                name: 'asc',
+              },
+              select: {
+                id: true,
+                name: true,
+              },
+            },
+          }, 
+        }
+    );
   }
-  
+
 }
