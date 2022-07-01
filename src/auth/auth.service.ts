@@ -5,6 +5,7 @@ import { LoginResponseDto } from './dto/login-response.dto';
 import { LoginDto } from './dto/login.dto';
 import { JwtService } from '@nestjs/jwt';
 import { Users } from 'src/users/entities/user.entity';
+import { games } from '../games/mocks/games';
 
 @Injectable()
 export class AuthService {
@@ -37,4 +38,22 @@ export class AuthService {
       user,
     };
   }
+
+  getHomepage(idprofile: number,) {
+    return this.prisma.profiles.findMany({
+      where: { id: idprofile },
+      include: {
+          games: {
+            include: {
+              genres: true
+            }
+          },
+      }
+    })
+  }
+
+  findAll() {
+    return games;
+  }
+  
 }

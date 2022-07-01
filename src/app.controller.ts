@@ -1,8 +1,7 @@
-import { Controller, Get, Param, Req, UseGuards } from '@nestjs/common';
+import { Controller, Get, Req, } from '@nestjs/common';
 import { AppService } from './app.service';
 import { Request } from 'express';
-import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
-import { AuthGuard } from '@nestjs/passport';
+import { ApiTags, ApiOperation, } from '@nestjs/swagger';
 
 @ApiTags('home')
 @Controller('home')
@@ -17,15 +16,4 @@ constructor(private readonly appService: AppService) { }
     const baseUrl = req.protocol + '://' + req.get('host');
     return this.appService.getAppStatus(baseUrl);
   }
-
-  @UseGuards(AuthGuard())
-  @ApiBearerAuth()  
-  @Get(':idprofile')
-  @ApiOperation({
-    summary: 'Retorna informações do perfil, jogos favoritos e gêneros relacionado ao id',
-  })
-  getHomepage(@Param('idprofile') idprofile: string,) {
-    return this.appService.getHomepage(+idprofile);
-  }
-
 }
