@@ -38,8 +38,8 @@ export class AuthController {
     summary: 'Retorna informações do perfil, jogos favoritos e gêneros relacionado ao id',
   })
   Homepage(@Param('idprofile') idprofile: string,) {
-    //return this.authService.getHomepage(+idprofile);
-    return this.authService.findAll();
+    return this.authService.getHomepage(+idprofile);
+    //return this.authService.findAll();
   }
 
 }
