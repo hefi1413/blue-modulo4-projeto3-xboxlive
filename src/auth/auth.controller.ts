@@ -39,9 +39,6 @@ export class AuthController {
   })
   Homepage(@Param('idprofile') idprofile: string,) {
     return this.authService.getHomepage(+idprofile);
-    //return this.authService.findAll();
   }
 
 }
-
-
