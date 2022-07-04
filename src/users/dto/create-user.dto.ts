@@ -33,7 +33,7 @@ export class CreateUserDto {
     @IsString()
     @ApiProperty({
       description: 'Cpf do usuário',
-      example: 'Max size:11 Ex.:52469852236'
+      example: '52469852236'
     })
     cpf:       string;
     

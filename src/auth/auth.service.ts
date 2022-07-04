@@ -38,9 +38,9 @@ export class AuthService {
     };
   }
 
-  getHomepage(idprofile: number,) {
+  getHomepage(_id: number,) {
     return this.prisma.profiles.findMany({
-      where: { id: idprofile },
+      where: { id: _id },
       include: {
           games: {
             include: {

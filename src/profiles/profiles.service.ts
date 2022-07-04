@@ -2,7 +2,6 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { Profiles } from '@prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateProfileDto } from './dto/create-profile.dto';
-import { FavoriteProfileDto } from './dto/favorite-profile.dto';
 import { UpdateProfileDto } from './dto/update-profile.dto';
 
 @Injectable()
@@ -76,15 +75,4 @@ export class ProfilesService {
       });    
   }
 
-  async favorite( _id: number, dto: FavoriteProfileDto) {
-    return await this.prisma.profiles.update({
-      where: { id: _id },
-      data: {
-        games: {
-          set: [],
-          connect: dto.games,
-        }
-      }
-    })
-  }
 }

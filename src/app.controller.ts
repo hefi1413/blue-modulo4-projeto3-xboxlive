@@ -1,7 +1,8 @@
-import { Controller, Get, Req, } from '@nestjs/common';
+import { Controller, Get, Req } from '@nestjs/common';
 import { AppService } from './app.service';
+import { ApiTags, ApiOperation } from '@nestjs/swagger';
 import { Request } from 'express';
-import { ApiTags, ApiOperation, } from '@nestjs/swagger';
+
 
 @ApiTags('home')
 @Controller('home')
@@ -16,4 +17,13 @@ constructor(private readonly appService: AppService) { }
     const baseUrl = req.protocol + '://' + req.get('host');
     return this.appService.getAppStatus(baseUrl);
   }
+
+  @Get()
+  @ApiOperation({
+    summary: 'Hello da aplicação',
+  })
+  root() {
+    return '******* XBOX Live ********';
+  }
+  
 }

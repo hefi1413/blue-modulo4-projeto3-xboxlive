@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString } from 'class-validator';
+import { IsString, IsUrl } from 'class-validator';
 
 export class CreateGenresDto {
     @IsString()
@@ -8,4 +8,11 @@ export class CreateGenresDto {
       example: 'Action'
     })
     name: string;
+
+    @IsUrl()
+    @ApiProperty({
+      description: 'Url da capa do gênero',
+      example: 'https://m.media-amazon.com/images/I/712rPQQYj+L._AC_SX569_.jpg'
+    })
+    coverImageUrl : string;    
 }

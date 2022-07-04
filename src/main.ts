@@ -6,7 +6,7 @@ import { AppModule } from './app.module';
 const PORT =process.env.PORT || 3500;
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, { cors: true });
 
   app.useGlobalPipes(new ValidationPipe());
   
@@ -20,6 +20,7 @@ async function bootstrap() {
   .addTag('genres')
   .addTag('profiles')
   .addTag('users')
+  .addTag('favorite')
   .addBearerAuth()
   .build();
 

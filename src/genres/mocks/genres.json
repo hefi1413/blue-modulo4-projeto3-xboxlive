@@ -1,21 +1,27 @@
 
 [
     {
-        "name": "Racing"
+        "name": "Racing",
+        "coverImageUrl": "https://www.mobygames.com/images/covers/l/356579-forza-motorsport-5-racing-game-of-the-year-edition-xbox-one-front-cover.png"
     },    
     {
-        "name": "RPG"
+        "name": "RPG",
+        "coverImageUrl": "https://i.pinimg.com/originals/df/d7/0c/dfd70c56666e444638f5940f8fcde1bb.jpg"
     },    
     {
-        "name": "Strategy"
+        "name": "Strategy",
+        "coverImageUrl": "https://i.pinimg.com/736x/d0/df/94/d0df948aeb04b2092cc7939d6e2c5230.jpg"
     },    
     {
-        "name": "Sports"
+        "name": "Sports",
+        "coverImageUrl": "https://imgs.ponto.com.br/1524048973/1xg.jpg"
     },    
     {
-        "name": "Action"
+        "name": "Action",
+        "coverImageUrl": "https://olhardigital.com.br/especial/playstation-vs-xbox/assets/img/xbox_halo2_cover.jpg"
     },
     {
-        "name": "Adventure"
+        "name": "Adventure",
+        "coverImageUrl": "https://www.mobygames.com/images/covers/l/554502-kinect-adventures-xbox-360-front-cover.jpg"
     }
 ]

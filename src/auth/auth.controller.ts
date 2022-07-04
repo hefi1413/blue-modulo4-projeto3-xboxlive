@@ -1,11 +1,11 @@
 import { Get, Post, Body, Controller, HttpCode, HttpStatus, UseGuards, Param } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
-import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { Users } from '@prisma/client';
 import { AuthService } from './auth.service';
 import { LoginResponseDto } from './dto/login-response.dto';
 import { LoginDto } from './dto/login.dto';
 import { LoggedUser } from './logged-user.decorator';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('auth')
 @ApiTags('auth')
@@ -23,22 +23,22 @@ export class AuthController {
 
   @Get()
   @UseGuards(AuthGuard())
-  @ApiOperation({
-    summary: 'Retorna o usuário autenticado no momento',
-  })
   @ApiBearerAuth()
-  profile(@LoggedUser() user: Users): Users {
+  @ApiOperation({
+    summary: 'Retorna o usuário autenticado no momento'
+  })
+  profile(@LoggedUser() user: Users) {
     return user;
   } 
-
+  
+  @Get(':id')
   @UseGuards(AuthGuard())
   @ApiBearerAuth()  
-  @Get(':idprofile')
   @ApiOperation({
     summary: 'Retorna informações do perfil, jogos favoritos e gêneros relacionado ao id',
   })
-  Homepage(@Param('idprofile') idprofile: string,) {
-    return this.authService.getHomepage(+idprofile);
+  homepage(@Param('id') id: string) {
+    return this.authService.getHomepage(+id);
   }
 
 }
