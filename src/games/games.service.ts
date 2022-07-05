@@ -117,5 +117,15 @@ export class GamesService {
             where: { id: _id },
         });    
     }
-    
+
+    async getGameByGenre(idGenre: number) {
+        const record =await this.prisma.games.findMany({ 
+        });
+
+        if (!record) {
+            throw new NotFoundException(`Registro ID:${idGenre} não localizado.`)
+        };
+        return record;                    
+    }
+
 }

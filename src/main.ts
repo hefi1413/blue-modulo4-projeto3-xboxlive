@@ -15,6 +15,7 @@ async function bootstrap() {
   .setDescription('Aplicação para gestão de jogos XBOX LIve')
   .setVersion('1.0.0')
   .addTag('auth')
+  .addTag('app')
   .addTag('home')
   .addTag('games')
   .addTag('genres')
