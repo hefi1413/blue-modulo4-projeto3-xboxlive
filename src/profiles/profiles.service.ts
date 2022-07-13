@@ -20,7 +20,7 @@ export class ProfilesService {
                           }})    
   }
 
-  async findById(_id: number) {
+  async findById(_id: string) {
     const record =await this.prisma.profiles.findUnique({ 
       where: { id: _id, },
       include: {
@@ -43,7 +43,7 @@ export class ProfilesService {
     return this.prisma.profiles.create( { data: dto });
   }
 
-  async update(_id: number, dto: UpdateProfileDto) {
+  async update(_id: string, dto: UpdateProfileDto) {
     const _data: Partial<Profiles> = { ...dto };
 
     const record =await this.prisma.profiles.findUnique({ where: { id: _id, } });
@@ -58,7 +58,7 @@ export class ProfilesService {
     });
   }
 
-  async delete(_id: number) {
+  async delete(_id: string) {
     const record =await this.prisma.profiles.findUnique({ 
                                 where: { id: _id, },
                                 include: {

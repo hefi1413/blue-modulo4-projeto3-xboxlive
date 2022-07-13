@@ -31,7 +31,7 @@ export class GenresController {
       if( !user.isAdmin ) {
         throw new UnauthorizedException(`Usuário ${user.name} não esta cadastrado como administrador`)
       }
-      return this.genresService.findById(+id);
+      return this.genresService.findById(id);
     }
 
     @Post()
@@ -50,7 +50,7 @@ export class GenresController {
       if( !user.isAdmin ) {
         throw new UnauthorizedException(`Usuário ${user.name} não esta cadastrado como administrador`)
       }
-      return this.genresService.update( +id, dto);
+      return this.genresService.update( id, dto);
     }
 
     @Delete(':id')
@@ -61,6 +61,6 @@ export class GenresController {
       if( !user.isAdmin ) {
         throw new UnauthorizedException(`Usuário ${user.name} não esta cadastrado como administrador`)
       }
-      return this.genresService.delete( +id );
+      return this.genresService.delete( id );
     }
 }

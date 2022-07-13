@@ -25,7 +25,7 @@ export class GamesService {
         );
     }
 
-    async findById(_id: number) {
+    async findById(_id: string) {
         const record =await this.prisma.games.findUnique({ 
             where: { id: _id, },
             include: {
@@ -73,7 +73,7 @@ export class GamesService {
         }) 
     }
 
-    async update(_id: number, dto: UpdateGamesDto) {
+    async update(_id: string, dto: UpdateGamesDto) {
         const record =await this.prisma.games.findUnique({ where: { id: _id, } });
 
         if (!record) {
@@ -81,22 +81,20 @@ export class GamesService {
         };
 
         const _data =  {
-            title: dto.title,
-            CoverImageUrl: dto.CoverImageUrl,
-            Description: dto.Description,
-            Year: dto.Year,
-            ImdbScore: dto.ImdbScore,
-            TrailerYouTubeUrl: dto.TrailerYouTubeUrl,
-            GameplayYouTubeUrl: dto.GameplayYouTubeUrl
+            title: dto.title || record.title,
+            CoverImageUrl: dto.CoverImageUrl || record.CoverImageUrl,
+            Description: dto.Description || record.Description,
+            Year: dto.Year || record.Year,
+            ImdbScore: dto.ImdbScore || record.ImdbScore,
+            TrailerYouTubeUrl: dto.TrailerYouTubeUrl || record.TrailerYouTubeUrl,
+            GameplayYouTubeUrl: dto.GameplayYouTubeUrl || record.GameplayYouTubeUrl
         };
 
         // optional relation
         if (dto.genres) {
             _data["genres"] = {
-                genres: {
-                    set: [],
-                    connect: dto.genres
-                }
+                set: [],
+                connect: dto.genres
             }
         };
 
@@ -106,7 +104,7 @@ export class GamesService {
         });
     }
 
-    async delete(_id: number,) {
+    async delete(_id: string,) {
         const record =await this.prisma.games.findUnique({ where: { id: _id, } });
 
         if (!record) {
@@ -118,7 +116,7 @@ export class GamesService {
         });    
     }
 
-    async getGameByGenre(idGenre: number) {
+    async getGameByGenre(idGenre: string) {
         const record =await this.prisma.games.findMany({ 
         });
 

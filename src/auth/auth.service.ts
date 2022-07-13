@@ -16,6 +16,9 @@ export class AuthService {
   async login(loginDto: LoginDto): Promise<LoginResponseDto> {
     const { email, password } = loginDto;
 
+    //console.log('email:',email);
+    //console.log('password:',password);
+
     // Procura e checa se o user existe, usando o nickname
     const user =await this.prisma.users.findUnique({ where: { email:email } });
 
@@ -38,7 +41,7 @@ export class AuthService {
     };
   }
 
-  getHomepage(_id: number,) {
+  getHomepage(_id: string,) {
     return this.prisma.profiles.findMany({
       where: { id: _id },
       include: {

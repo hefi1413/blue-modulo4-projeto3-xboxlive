@@ -34,7 +34,7 @@ export class GamesController {
       if( !user.isAdmin ) {
         throw new UnauthorizedException(`Usuário ${user.name} não esta cadastrado como administrador`)
       }
-      return this.gamesService.findById(+id);
+      return this.gamesService.findById(id);
     }
 
     @Post()
@@ -56,7 +56,7 @@ export class GamesController {
         if( !user.isAdmin ) {
           throw new UnauthorizedException(`Usuário ${user.name} não esta cadastrado como administrador`)
         }
-        return this.gamesService.update( +id, dto);
+        return this.gamesService.update( id, dto);
     }
 
     @Delete(':id')
@@ -67,6 +67,6 @@ export class GamesController {
       if( !user.isAdmin ) {
         throw new UnauthorizedException(`Usuário ${user.name} não esta cadastrado como administrador`)
       }
-      return this.gamesService.delete( +id );
+      return this.gamesService.delete( id );
     }
 }

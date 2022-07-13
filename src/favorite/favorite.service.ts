@@ -7,7 +7,7 @@ export class FavoriteService {
   constructor(private prisma :PrismaService ) {}
 
 
-  async favorite( _id: number, dto: FavoriteDto) {
+  async favorite( _id: string, dto: FavoriteDto) {
     return await this.prisma.profiles.update({
       where: { id: _id },
       data: {

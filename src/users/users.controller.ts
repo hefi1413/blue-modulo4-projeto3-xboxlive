@@ -22,7 +22,7 @@ export class UsersController {
     summary: 'Listar um usuário',
   })      
   findOne(@Param('id') id: string) {
-    return this.usersService.findOne(+id);
+    return this.usersService.findOne(id);
   }
 
   @Post()
@@ -38,7 +38,7 @@ export class UsersController {
     summary: 'Alterar um usuário',
   })      
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.usersService.update(+id, updateUserDto);
+    return this.usersService.update(id, updateUserDto);
   }
 
   @Delete(':id')
@@ -46,6 +46,6 @@ export class UsersController {
     summary: 'Deletar um usuário',
   })      
   delete(@Param('id') id: string) {
-    return this.usersService.delete(+id);
+    return this.usersService.delete(id);
   }
 }

@@ -25,7 +25,7 @@ export class ProfilesController {
     summary: 'Retornar perfil por ID',
   })    
   findOne(@Param('id') id: string) {
-    return this.profilesService.findById(+id);
+    return this.profilesService.findById(id);
   }
 
   @Post()
@@ -41,7 +41,7 @@ export class ProfilesController {
     summary: 'Alterar perfil de usuário',
   })    
   update(@Param('id') id: string, @Body() updateProfileDto: UpdateProfileDto) {
-    return this.profilesService.update(+id, updateProfileDto);
+    return this.profilesService.update(id, updateProfileDto);
   }
 
   @Delete(':id')
@@ -49,7 +49,7 @@ export class ProfilesController {
     summary: 'Remover perfil de usuário',
   })    
   delete(@Param('id') id: string) {
-    return this.profilesService.delete(+id);
+    return this.profilesService.delete(id);
   }
 
 }

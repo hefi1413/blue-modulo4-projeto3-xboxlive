@@ -24,21 +24,19 @@ export class CreateGamesDto {
     })
     Description : string;
 
-    @IsNumber()
-    @IsPositive()
+    @IsString()
     @ApiProperty({
       description: 'Ano de lançamento do jogo',
-      example: 2021
+      example: '2021'
     })
-    Year :number;
+    Year :string;
 
-    @IsNumber()
-    @IsPositive()
+    @IsString()
     @ApiProperty({
       description: 'Ranking no site IMDB. Conhecido como Internet Movie Database',
       example: 4
     })
-    ImdbScore :number;
+    ImdbScore :string;
 
     @IsUrl()
     @IsOptional()

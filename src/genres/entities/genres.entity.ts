@@ -1,6 +1,6 @@
 
 export class Genres {
-    id?: number;
+    id?: string;
     name: string;
     coverImageUrl: string;
     createdAt? :Date;

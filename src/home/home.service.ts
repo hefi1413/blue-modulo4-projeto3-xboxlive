@@ -6,7 +6,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export class HomeService {
     constructor(private prisma :PrismaService ) {}
 
-    async getGameByGenre(idGenre: number) {
+    async getGamesByGenre(idGenre: string) {
         const record =await this.prisma.genres.findMany({ 
             where: { 
                 id: idGenre,

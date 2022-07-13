@@ -17,6 +17,6 @@ export class FavoriteController {
     summary: 'Favoritar jogos para um perfil de usuário',
   })    
   favorite(@Param('id') id: string, @Body() dto: FavoriteDto) {
-    return this.favoriteService.favorite( +id, dto,  )
+    return this.favoriteService.favorite( id, dto,  )
   }
 }

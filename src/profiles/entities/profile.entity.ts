@@ -1,5 +1,5 @@
 export class Profiles {
-    id?: number;
+    id?: string;
     title: string;
     imageUrl : string;
     createdAt? :Date;

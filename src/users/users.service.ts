@@ -26,7 +26,7 @@ export class UsersService {
                   })
   }
 
-  async findOne(_id: number) {
+  async findOne(_id: string) {
     const record =await this.prisma.users.findUnique({ 
       where: { id: _id, },
       include: {
@@ -60,7 +60,7 @@ export class UsersService {
     return this.prisma.users.create( { data: dto });
   }
 
-  async update(_id: number, dto: UpdateUserDto) {
+  async update(_id: string, dto: UpdateUserDto) {
     const _data: Partial<Users> = { ...dto };
 
     const record =await this.prisma.users.findUnique({ where: { id: _id, } });
@@ -75,7 +75,7 @@ export class UsersService {
     });
   }
 
-  async delete(_id: number) {
+  async delete(_id: string) {
     try {
       await this.prisma.profiles.deleteMany({
         where: { userId: _id, },

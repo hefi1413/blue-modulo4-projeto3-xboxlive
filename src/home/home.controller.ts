@@ -14,12 +14,12 @@ export class HomeController {
 
     @Get(':id')
     @ApiOperation({
-        summary: 'Localizar todos jogos',
+        summary: 'Localizar todos jogos de um gênero',
     })    
     findAll(@Param('id') id: string, @LoggedUser() user: Users) {
       if( !user.isAdmin ) {
         throw new UnauthorizedException(`Usuário ${user.name} não esta cadastrado como administrador`)
       }
-      return this.homeService.getGameByGenre(+id);
+      return this.homeService.getGamesByGenre(id);
     }
   }

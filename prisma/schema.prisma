@@ -13,12 +13,12 @@ datasource db {
 }
 
 model Games {
-  id                 Int      @id @unique @default(autoincrement())
+  id                 String   @id @unique @default(uuid())
   title              String   @db.VarChar(100)
   CoverImageUrl      String   @map("coverimage_url") @db.VarChar(255)
   Description        String   @map("description") @db.VarChar(255)
-  Year               Int      @map("year")
-  ImdbScore          Int      @map("imdb_score")
+  Year               String   @map("year")
+  ImdbScore          String   @map("imdb_score")
   TrailerYouTubeUrl  String   @map("trailer_youtube_url") @db.VarChar(255)
   GameplayYouTubeUrl String   @map("gameplay_youtube_url") @db.VarChar(255)
   createdAt          DateTime @default(now()) @map("created_at")
@@ -31,7 +31,7 @@ model Games {
 }
 
 model Genres {
-  id            Int      @id @default(autoincrement())
+  id            String   @id @default(uuid())
   name          String   @db.VarChar(100)
   coverImageUrl String   @map("coverimage_url") @db.VarChar(255)
   createdAt     DateTime @default(now()) @map("created_at")
@@ -42,7 +42,7 @@ model Genres {
 }
 
 model Users {
-  id        Int      @id @default(autoincrement())
+  id        String   @id @default(uuid())
   name      String   @db.VarChar(30)
   email     String   @unique @db.VarChar(100)
   password  String   @db.VarChar(129)
@@ -56,13 +56,13 @@ model Users {
 }
 
 model Profiles {
-  id        Int      @id @default(autoincrement())
+  id        String   @id @default(uuid())
   title     String   @db.VarChar(30)
   imageURL  String   @map("image_url") @db.VarChar(255)
   createdAt DateTime @default(now()) @map("created_at")
 
-  user   Users @relation(fields: [userId], references: [id])
-  userId Int   @map("user_id")
+  user   Users  @relation(fields: [userId], references: [id])
+  userId String @map("user_id")
 
   games Games[]
 

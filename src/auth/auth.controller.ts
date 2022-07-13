@@ -18,6 +18,9 @@ export class AuthController {
     summary: 'Realizar login, recebendo um token de autenticação',
   })
   login(@Body() loginDto: LoginDto): Promise<LoginResponseDto> {
+
+    console.log('loginDto:',loginDto);
+
     return this.authService.login(loginDto);
   }
 
@@ -38,7 +41,7 @@ export class AuthController {
     summary: 'Retorna informações do perfil, jogos favoritos e gêneros relacionado ao id',
   })
   homepage(@Param('id') id: string) {
-    return this.authService.getHomepage(+id);
+    return this.authService.getHomepage(id);
   }
 
 }

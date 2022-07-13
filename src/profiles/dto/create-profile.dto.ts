@@ -16,10 +16,10 @@ export class CreateProfileDto {
     })
     imageURL: string
 
-    @IsNumber()
+    @IsString()
     @ApiProperty({
         description: 'ID do usuário proprietário deste perfil',
         example: '1'
     })
-    userId: number
+    userId: string
 }

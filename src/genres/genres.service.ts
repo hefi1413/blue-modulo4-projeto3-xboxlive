@@ -12,7 +12,7 @@ export class GenresService {
         return this.prisma.genres.findMany();
     }
     
-    async findById(_id: number) {
+    async findById(_id: string) {
         const record =await this.prisma.genres.findUnique({ where: { id: _id, } });
 
         if (!record) {
@@ -26,7 +26,7 @@ export class GenresService {
         return this.prisma.genres.create( { data: _genres });
     }
 
-    async update(_id: number, dto: UpdateGenresDto) {
+    async update(_id: string, dto: UpdateGenresDto) {
         const data: Partial<Genres> = { ...dto };
 
         const record =await this.prisma.genres.findUnique({ where: { id: _id, } });
@@ -41,7 +41,7 @@ export class GenresService {
         });    
     }
 
-    async delete(_id: number,) {
+    async delete(_id: string,) {
         const record =await this.prisma.genres.findUnique({ where: { id: _id, } });
 
         if (!record) {
